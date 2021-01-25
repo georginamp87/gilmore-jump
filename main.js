@@ -5,19 +5,21 @@ let canvas= document.querySelector('canvas')
 canvas.style.backgroundColor = "#358590"
 canvas.style.border = '2px dotted #355890'
 let bgImg = document.createElement('img')
-bgImg.src = "../gilmore-jump/images/backgroundEmpty.png"
-let bgCastles = document.createElement('img')
-bgCastles.src = "./images/backgroundCastles.png"
+bgImg.src = "./images/backgroundCastles.png"
+let grassImg = document.createElement('img')
+grassImg.src = "./images/backgroundColorGrass.jpg"
+let towerImg = document.createElement('img')
+towerImg.src = "./images/tower.png"
 let jumpersImg = document.createElement('img')
-jumpersImg.src = "./images/jumpers.jpg"
+jumpersImg.src = "./images/jumpers.png"
 let ctx = canvas.getContext('2d')
-let jumpersDOM = new Jumpers(300, 100) // this is your jumpers obj
-let cushionX = 15
+let jumpersDOM = new Jumpers(110, 255) // this is your jumpers obj
+let cushionX = 25
 let cushionWidth = 120
 let cushionHeight = 20
 let cushionY = 850
-let incrementX = 5
-let incrementY = 1
+let incrementX = 10
+let incrementY = 3
 let intervalID = 0
 let score = 0
 
@@ -55,7 +57,10 @@ function cushionMove() {
 function draw() {
     ctx.clearRect(0,0, canvas.width, canvas.height)
     ctx.drawImage(bgImg, 10, 20)
-    ctx.drawImage(bgCastles, 10, 700)
+    ctx.drawImage(grassImg, 10, canvas.height - grassImg.height)
+    ctx.drawImage(towerImg, 80, 600)
+    ctx.drawImage(towerImg, 80, 425)
+    ctx.drawImage(towerImg, 80, 248)
     ctx.drawImage(jumpersImg, jumpersDOM.x, jumpersDOM.y, jumpersDOM.width, jumpersDOM.height)
     drawRect()
     cushionMove()
@@ -70,14 +75,16 @@ function draw() {
      // jumpersDOM.jumpersMove()
     }    
     
-    jumpersDOM.y += incrementY
+    if (jumpersDOM.y < cushionY + cushionHeight && jumpersDOM.y + jumpersDOM.width < cushionX + cushionWidth)
+    { jumpersDOM.y += incrementY}
+
     cushionX += incrementX
 
 }
 
 // intervalID = setInterval(() => {
 //     requestAnimationFrame(draw)
-// }, 30)
+// }, 100)
 
 
 

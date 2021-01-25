@@ -11,6 +11,7 @@ class Jumpers {
         this.width = 45
         this.height = 60
         this.incrementX = 10
+        this.incrementY = 20
 
     }
     jumpersMove() {
@@ -20,6 +21,9 @@ class Jumpers {
         if (this.x + this.width > 770) {
             this.incrementX = -this.incrementX
             }
+        if (this.y > 830) {
+            this.incrementY = -this.incrementY
+        }
     }
 }
 
