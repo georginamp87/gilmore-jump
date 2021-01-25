@@ -1,5 +1,3 @@
-
-
 //Create a start method to start the game
 class game {
     constructor() {

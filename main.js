@@ -2,10 +2,12 @@ let startBtn = document.querySelector('#btn-start')
 let restartBtn = document.querySelector('#restart')
 let gameDOM = document.querySelector('#game')
 
-let game = new Timer()
- 
+// let game = new Timer()
+
+
+
 startBtn.addEventListener('click', () => {
-    game.start()
+    gameDOM.start()
 })
 
 restartBtn.addEventListener('click', () => {
