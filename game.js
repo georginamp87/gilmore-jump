@@ -6,13 +6,17 @@ class game {
     }
 
     start(callback) {
+        canvas.style.display = 'block'
+        startBtn.style.display = 'none'
         this.intervalID = setInterval(() => {
             this.time += 1 
             callback()
         }, 1000)
     }
     
-    stop() {
+    gameOver() {
+        canvas.style.display = 'none'
+        restartBtn.style.display = 'block'
         clearInterval(this.intervalID)
     }
     //Create a method to restart the game
