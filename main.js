@@ -11,7 +11,15 @@ grassImg.src = "./images/backgroundColorGrass.jpg"
 let towerImg = document.createElement('img')
 towerImg.src = "./images/tower.png"
 let jumpersImg = document.createElement('img')
-jumpersImg.src = "./images/jumpers.png"
+jumpersImg.src = "./images/jumpersfalling.png"
+let treeImg = new Image
+treeImg.src = "./images/treePine.png"
+let moonImg = new Image
+moonImg.src = "./images/moon.png"
+let pineImg = new Image
+pineImg.src = "./images/treeSmall_green1.png"
+let treesImg = new Image
+treesImg.src = "./images/treeSmall_green2.png"
 let ctx = canvas.getContext('2d')
 let jumpersDOM = new Jumpers(110, 255) // this is your jumpers obj
 let cushionX = 25
@@ -61,35 +69,53 @@ function draw() {
     ctx.drawImage(towerImg, 80, 600)
     ctx.drawImage(towerImg, 80, 425)
     ctx.drawImage(towerImg, 80, 248)
+    ctx.drawImage(moonImg, 590, 120)
+    ctx.drawImage(pineImg, 630, 765)
+    ctx.drawImage(pineImg, 728, 773)
+    ctx.drawImage(pineImg, 780, 779)
+    ctx.drawImage(treeImg, 745, 745, 50, 90)
+    ctx.drawImage(treesImg, 40, 760, 20, 50)
+    ctx.drawImage(treesImg, 15, 755)
+    ctx.drawImage(treeImg, 650, 570)
     ctx.drawImage(jumpersImg, jumpersDOM.x, jumpersDOM.y, jumpersDOM.width, jumpersDOM.height)
     drawRect()
     cushionMove()
-    ctx.font = '24px Arial'
-    ctx.fillText('Score:' + score, 50, 30)
+    ctx.font = '24px Verdana'
+    ctx.fillText('Score:' + score, 50, 50)
 
     if(isRightArrow && jumpersDOM.x + jumpersDOM.width < canvas.width) {
        jumpersDOM.x += jumpersDOM.incrementX
     } 
     else if (isLeftArrow && jumpersDOM.x > 0) {
       jumpersDOM.x -= jumpersDOM.incrementX
-     // jumpersDOM.jumpersMove()
+     jumpersDOM.jumpersMove()
     }    
     
-    if (jumpersDOM.y < cushionY + cushionHeight && jumpersDOM.y + jumpersDOM.width < cushionX + cushionWidth)
-    { jumpersDOM.y += incrementY}
+    if ((jumpersDOM.x > cushionX) && 
+    (jumpersDOM.x + jumpersDOM.width < cushionX + cushionWidth) &&
+    (jumpersDOM.y + jumpersDOM.height > cushionY) ) {
+     incrementY = -randomIndex
+     incrementX += randomIndex
+ }
+ else if (jumpersDOM.x + jumpersDOM.width > 300){
+     jumpersDOM.y += randomIndex
+ }
+ else { 
+     jumpersDOM.y += incrementY
+ }
 
     cushionX += incrementX
 
 }
 
-// intervalID = setInterval(() => {
-//     requestAnimationFrame(draw)
-// }, 100)
+intervalID = setInterval(() => {
+    requestAnimationFrame(draw)
+}, 100)
 
 
 
 bgImg.addEventListener('load', () => {
-    ctx.drawImage(bgImg, 10, 10, 780, 880)
+    ctx.drawImage(bgImg, 0, 0, 780, 880)
 })
 // let game = new gameDOM()
 

@@ -8,20 +8,20 @@ class Jumpers {
     constructor(x, y) {
         this.x = x
         this.y = y
-        this.width = 45
-        this.height = 60
+        this.width = 70
+        this.height = 80
         this.incrementX = 10
         this.incrementY = 20
 
     }
     jumpersMove() {
-        if (this.x < 30) {
-            this.incrementX += 1
+        if (this.x < 50) {
+            this.incrementX += 2
         }
-        if (this.x + this.width > 770) {
+        else if (this.x + this.width > 750) {
             this.incrementX = -this.incrementX
             }
-        if (this.y > 830) {
+        if (this.y + this.height > 830) {
             this.incrementY = -this.incrementY
         }
     }
