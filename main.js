@@ -1,6 +1,9 @@
+//DOM ELEMENTS
 let startBtn = document.querySelector('#btn-start')
 let restartBtn = document.querySelector('#restart')
-let gameDOM = document.querySelector('#game')
+let gameoverScreen = document.getElementById('gameover')
+let splash = document.querySelector('#splash')
+// let gameDOM = document.querySelector('#game')
 let canvas= document.querySelector('#canvas')
 let jumpersDOM = new Jumpers(110, 255) // this is your jumpers obj
 canvas.style.backgroundColor = "#358590"
@@ -24,24 +27,25 @@ let pineImg = new Image
 pineImg.src = "./images/treeSmall_green1.png"
 let treesImg = new Image
 treesImg.src = "./images/treeSmall_green2.png"
+let cushionImg = new Image
+cushionImg.src = "./images/fountainRound_N.png"
 
 
 //VARIABLES
 let cushionX = 50
-let cushionWidth = 120
-let cushionHeight = 20
-let cushionY = 855
+let cushionWidth = 350
+let cushionHeight = 200
+let cushionY = 700
 let incrementX = 10
-let incrementY = 3
+let incrementY = 5
 let intervalID = 0
+let time = 0
 let score = 0
+let jump = false;
 let randomIndex = Math.floor(Math.random() * 10) + 1
 
 function drawRect() {
-ctx.beginPath()
-ctx.fillStyle = "black"
-ctx.fillRect(cushionX, cushionY, cushionWidth, cushionHeight)
-ctx.closePath()
+ctx.drawImage(cushionImg, cushionX, cushionY, cushionWidth, cushionHeight)
 }
 
 function cushionMove() {
@@ -56,10 +60,22 @@ function cushionMove() {
         }
 }
 
+function gameOver() {
+    canvas.style.display = 'none'
+    let gameover = document.querySelector('.gameover')
+    gameover.style.display = 'block'
+    clearInterval(intervalID)
+}
+
+//Create a method to restart the game
+function restart() {
+    canvas.style.display = 'block'
+    start()
+}
+
+
 function jumpersFall () {
-    if (jumpersDOM.x + jumpersDOM.width <= cushionX && 
-        jumpersDOM.x >= cushionX + cushionWidth && 
-        (jumpersDOM.y + jumpersDOM.height >= cushionY) || jumpersDOM.y + jumpersDOM.height >=  canvas.height - cushionHeight){
+    if (jumpersDOM.y > canvas.height) {
             
         clearInterval(intervalID);
         gameOver()
@@ -95,33 +111,42 @@ function draw() {
     } 
     else if (isLeftArrow && jumpersDOM.x > 0) {
       jumpersDOM.x -= jumpersDOM.incrementX
-    //  jumpersDOM.jumpersMove()
     }    
-    
+
+
     if ((jumpersDOM.x > cushionX) && 
     (jumpersDOM.x + jumpersDOM.width < cushionX + cushionWidth) &&
     (jumpersDOM.y + jumpersDOM.height >= cushionY) ) {
-     incrementY = -incrementY
-     incrementX += randomIndex
-     score++
-     if (jumpersDOM.y < 250) {
-        incrementY += incrementY
+        jump = true
+        score++
     }
- }
-     
 
- else { 
-     jumpersDOM.y += incrementY
- }
+    if (jump) {
+       let jumpInterval = setInterval(() => {
+            jumpersDOM.y -= 1
+            if (jumpersDOM.y < 200) {
+                jump = false;
+                clearInterval(jumpInterval)
+            }
+         }, 100)
+    }
+    
+    jumpersDOM.y += incrementY
 
     cushionX += incrementX
 
 }
 
-//TEST THE GAME
-// intervalID = setInterval(() => {
-//     requestAnimationFrame(draw)
-// }, 100)
+// TEST THE GAME
+function start() {
+    splash.style.display = 'none'
+    canvas.style.display = 'block'
+    startBtn.style.display = 'none'
+    intervalID = setInterval(() => {
+        time += 1 
+        requestAnimationFrame(draw)
+    }, 100)
+}
 
 
 
@@ -135,12 +160,12 @@ window.addEventListener('load', () => {
     canvas.style.display = 'none'
 
     startBtn.addEventListener('click', () => {
-    gameDOM.start()
-})
+    start()
+    })
 
-})
-
-restartBtn.addEventListener('click', () => {
+    restartBtn.addEventListener('click', () => {
     //call the game restart method
-    gameDOM.start()
+    restart()
+    })
 })
+

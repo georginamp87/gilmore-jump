@@ -29,10 +29,13 @@ class Jumpers {
 
 
 document.addEventListener('keydown', (event) => {
+    event.preventDefault()
+
     if(event.keyCode == 39 || event.key == "ArrowRight") {
         isRightArrow = true
         isLeftArrow = false
-    } else if (event.keyCode == 37 || event.key == "ArrowLeft") {
+    } 
+    else if (event.keyCode == 37 || event.key == "ArrowLeft") {
         isRightArrow = false
         isLeftArrow = true
 

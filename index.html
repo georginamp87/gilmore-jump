@@ -10,16 +10,13 @@
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Jump</h1>
-    <section class="splash">
+      <section id="splash">
+      <h1>Jump</h1>
       <div class="container">
         <h3>Instructions</h3>
-        <p>Rory and Logan are about to jump off</p> 
-        <p>from a high tower</p> 
-        <p>holding on to an umbrella.</p> 
-        <p>Help them to move sideways</p> 
-        <p>by using your left/right arrow keys</p> 
-        <p>so they can safely land on the cushion.</p>
+        <p>Rory and Logan are about to jump off from a high tower 
+        holding on to an umbrella.</p> 
+        <p>Help them to move sideways by using your <span>left/right arrow keys</span> so they can safely land on the cushion.</p>
       </div>
       <div>
         <button type="button" id="btn-start" class="btn btn-light">Start Game</button>
@@ -28,11 +25,10 @@
     <div>
         <canvas id="canvas" width="800" height="900"></canvas>
     </div>
-    <div>
+    <div class="gameover">
         <button type="button" id="restart" class="btn btn-dark">Play again</button>
     </div>
     <script src='jumper.js'></script>
-    <script src='game.js'></script>
     <script src='main.js'></script>
     <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
