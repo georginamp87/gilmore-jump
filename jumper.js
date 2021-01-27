@@ -14,22 +14,18 @@ class Jumpers {
         this.incrementY = 20
 
     }
-    jumpersMove() {
-        if (this.x < 50) {
-            this.incrementX += 2
-        }
-        else if (this.x + this.width > 750) {
-            this.incrementX = -this.incrementX
-            }
-        if (this.y + this.height > 830) {
-            this.incrementY = -this.incrementY
-        }
-    }
+    // jumpersMove() {
+        // if (this.x < 50) {
+        //     this.incrementX += 2
+        // }
+        // else if (this.x + this.width > 750) {
+        //     this.incrementX = -this.incrementX
+        //     }
+    //     if (this.y + this.height > 830) {
+    //         this.incrementY = -this.incrementY
+    //     }
+    // }
 }
-
-
-
-
 
 
 document.addEventListener('keydown', (event) => {

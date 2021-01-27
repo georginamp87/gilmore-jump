@@ -6,6 +6,7 @@ class game {
     }
 
     start(callback) {
+        let canvas = document.getElementById('canvas')
         canvas.style.display = 'block'
         startBtn.style.display = 'none'
         this.intervalID = setInterval(() => {
