@@ -3,7 +3,6 @@ let startBtn = document.querySelector('#btn-start')
 let restartBtn = document.querySelector('#restart')
 let gameoverScreen = document.getElementById('gameover')
 let splash = document.querySelector('#splash')
-// let gameDOM = document.querySelector('#game')
 let canvas= document.querySelector('#canvas')
 let jumpersDOM = new Jumpers(110, 255) // this is your jumpers obj
 canvas.style.backgroundColor = "#358590"
@@ -33,9 +32,9 @@ cushionImg.src = "./images/fountainRound_N.png"
 
 //VARIABLES
 let cushionX = 50
-let cushionWidth = 350
-let cushionHeight = 200
-let cushionY = 700
+let cushionWidth = 150
+let cushionHeight = 70
+let cushionY = 800
 let incrementX = 10
 let incrementY = 5
 let intervalID = 0
@@ -60,23 +59,35 @@ function cushionMove() {
         }
 }
 
+function drawScore() {
+    ctx.font = '24px Yusei Magic'
+    ctx.fillStyle = '#FF8066'
+    ctx.fillText('Score:' + score, 50, 50)
+}
+
 function gameOver() {
     canvas.style.display = 'none'
     let gameover = document.querySelector('.gameover')
     gameover.style.display = 'block'
-    clearInterval(intervalID)
+    displayScore()
 }
 
+// function startGame() {
+//     jumpersDOM.x =
+// }
 //Create a method to restart the game
 function restart() {
     canvas.style.display = 'block'
+    let gameover = document.querySelector('.gameover')
+    gameover.style.display = 'none'
+    jumpersDOM = new Jumpers (115,255)
+    score = 0
     start()
 }
 
 
 function jumpersFall () {
     if (jumpersDOM.y > canvas.height) {
-            
         clearInterval(intervalID);
         gameOver()
         // location.reload(); 
@@ -99,12 +110,12 @@ function draw() {
     ctx.drawImage(treesImg, 40, 760, 20, 50)
     ctx.drawImage(treesImg, 15, 755)
     ctx.drawImage(treeImg, 650, 570)
-    ctx.drawImage(jumpersImg, jumpersDOM.x, jumpersDOM.y, jumpersDOM.width, jumpersDOM.height)
     drawRect()
+    ctx.drawImage(jumpersImg, jumpersDOM.x, jumpersDOM.y, jumpersDOM.width, jumpersDOM.height)
+    drawScore()
     cushionMove()
     jumpersFall()
-    ctx.font = '24px Verdana'
-    ctx.fillText('Score:' + score, 50, 50)
+
 
     if(isRightArrow && jumpersDOM.x + jumpersDOM.width < canvas.width) {
        jumpersDOM.x += jumpersDOM.incrementX
@@ -153,8 +164,6 @@ function start() {
 // bgImg.addEventListener('load', () => {
 //     ctx.drawImage(bgImg, 0, 0, 780, 880)
 // })
-// let game = new gameDOM()
-
 
 window.addEventListener('load', () => {
     canvas.style.display = 'none'
