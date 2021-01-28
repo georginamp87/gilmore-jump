@@ -12,25 +12,25 @@ let ctx = canvas.getContext('2d')
 
 //IMAGES
 let bgImg = document.createElement('img')
-bgImg.src = "/images/backgroundCastles.png"
+bgImg.src = "images/backgroundCastles.png"
 let grassImg = document.createElement('img')
-grassImg.src = "/images/backgroundColorGrass.jpg"
+grassImg.src = "images/backgroundColorGrass.jpg"
 let towerImg = document.createElement('img')
-towerImg.src = "/images/tower.png"
+towerImg.src = "images/tower.png"
 let jumpersImg = document.createElement('img')
-jumpersImg.src = "/images/jumpersfalling.png"
+jumpersImg.src = "images/jumpersfalling.png"
 let treeImg = new Image
-treeImg.src = "/images/treePine.png"
+treeImg.src = "images/treePine.png"
 let moonImg = new Image
-moonImg.src = "/images/moon.png"
+moonImg.src = "images/moon.png"
 let pineImg = new Image
-pineImg.src = "/images/treeSmall_green1.png"
+pineImg.src = "images/treeSmall_green1.png"
 let treesImg = new Image
-treesImg.src = "/images/treeSmall_green2.png"
+treesImg.src = "images/treeSmall_green2.png"
 let cushionImg = new Image
-cushionImg.src = "/images/fountainRound_N.png"
+cushionImg.src = "images/fountainRound_N.png"
 let logoImg = new Image
-logoImg.src = "/images/GilmoreGirlsLogo.png"
+logoImg.src = "images/GilmoreGirlsLogo.png"
 
 
 //VARIABLES
@@ -45,13 +45,13 @@ let time = 0
 let score = 0
 let jump = false;
 let randomIndex = Math.floor(Math.random() * 10) + 1
-let gameOverSound = new sound ("/audio/gameover.m4a")
+let gameOverSound = new sound ("audio/gameover.m4a")
 gameOverSound.volume = 0.1
-let jumpJack = new sound('/audio/playingSound.m4a')
+let jumpJack = new sound('audio/playingSound.m4a')
 jumpJack.volume = 0.1
-let inOmniaSound = new sound ("/audio/inomniaparatus.m4a")
+let inOmniaSound = new sound ("audio/inomniaparatus.m4a")
 inOmniaSound.volume = 0.1
-let pika = new sound ("/audio/pikachu.wav")
+let pika = new sound ("audio/pikachu.wav")
 pika.volume = 0.01
 let level = 0
 
