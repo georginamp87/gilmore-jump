@@ -12,7 +12,7 @@ let ctx = canvas.getContext('2d')
 
 //IMAGES
 let bgImg = document.createElement('img')
-bgImg.src = "images/backgroundCastles.png"
+bgImg.src = "./images/backgroundCastles.png"
 let grassImg = document.createElement('img')
 grassImg.src = "images/backgroundColorGrass.jpg"
 let towerImg = document.createElement('img')
