@@ -2,7 +2,7 @@
 
 ## Description
 
-Gilmore-Jump is a game where the player jumps from a high tower holding an umbrella and has to move horizontally while falling to land on top of the inflatable cushion. The game ends if the player isn't able to land on the cushion which moves sideways at a increasing speed. After that, a score is calculated based on the ability to land safely and the amount of time the game lasted.
+Gilmore-Jump is a game where the player jumps from a high tower holding to an umbrella and has to move horizontally while falling to land on top of the inflatable cushion. The game ends if the player isn't able to land on the cushion which moves sideways at a increasing speed. A score is calculated based on the ability to bounce back safely from the cushion during the time that the game lasted.
 
 ## MVP (DOM - CANVAS)
 
@@ -16,7 +16,7 @@ Gilmore-Jump is a game where the player jumps from a high tower holding an umbre
 ## Backlog
 
 - add scoreboard
-- Ability to start the game on increased dificulty lvl
+- Ability to increase dificulty of the game
 
 ## Data Structure
 
@@ -26,7 +26,7 @@ Gilmore-Jump is a game where the player jumps from a high tower holding an umbre
 - buildGameScreen () {}
 - buildGameOverScreen () {}
 
-# game.js
+<!-- # game.js
 
 - Game () {}
 - starLoop () {}
@@ -35,7 +35,7 @@ Gilmore-Jump is a game where the player jumps from a high tower holding an umbre
 - clearCanvas () {}
 - updateCanvas () {}
 - drawCanvas () {}
-- GameOver () {}
+- GameOver () {} -->
 
 # jumper.js 
 
@@ -49,7 +49,7 @@ Gilmore-Jump is a game where the player jumps from a high tower holding an umbre
 - move () {}
 - checkScreenCollision () {}
 
-# cushion.js 
+<!-- # cushion.js 
 
 - Cushion () {
     this.x;
@@ -59,7 +59,7 @@ Gilmore-Jump is a game where the player jumps from a high tower holding an umbre
 }
 - draw () {}
 - move () {}
-- checkCollisionButton () {}
+- checkCollisionButton () {} -->
 
 <!-- # birds.js 
 
@@ -109,8 +109,8 @@ Definition of the different states and their transition (transition functions)
 ### Git
 URls for the project repo and deploy
 [Link Repo](https://github.com/georginamp87/gilmore-jump)
-[Link Deploy](https://jorgeberrizbeitia.github.io/kraken-brigade/)
+[Link Deploy](https://georginamp87.github.io/gilmore-jump/)
 
 ### Slides
 URls for the project presentation (slides)
-[Link Slides.com](https://docs.google.com/presentation/d/138o01hAz-0gXepN78RsDgse12HiiuN7Fz_N_hJnI9_g/edit?usp=sharing)
+[Link Slides.com](https://docs.google.com/presentation/d/1TtxLfhlAUu6JMJh9WCQ7mD4yCJMOnpVUN4MkpOEYZqM/edit#slide=id.g79876c77dd_0_0)
