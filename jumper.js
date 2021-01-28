@@ -1,4 +1,3 @@
-// x, y, width, height
 let isLeftArrow = false
 let isRightArrow = false
 let moveJumpers = 5
@@ -10,21 +9,11 @@ class Jumpers {
         this.y = y
         this.width = 80
         this.height = 100
-        this.incrementX = 10
+        this.incrementX = 12
         this.incrementY = 20
 
     }
-    // jumpersMove() {
-        // if (this.x < 50) {
-        //     this.incrementX += 2
-        // }
-        // else if (this.x + this.width > 750) {
-        //     this.incrementX = -this.incrementX
-        //     }
-    //     if (this.y + this.height > 830) {
-    //         this.incrementY = -this.incrementY
-    //     }
-    // }
+
 }
 
 

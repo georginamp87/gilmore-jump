@@ -45,6 +45,8 @@ let time = 0
 let score = 0
 let jump = false;
 let randomIndex = Math.floor(Math.random() * 10) + 1
+
+//SOUND
 let gameOverSound = new sound ("audio/gameover.m4a")
 gameOverSound.volume = 0.1
 let jumpJack = new sound('audio/playingSound.m4a')
@@ -53,6 +55,10 @@ let inOmniaSound = new sound ("audio/inomniaparatus.m4a")
 inOmniaSound.volume = 0.1
 let pika = new sound ("audio/pikachu.wav")
 pika.volume = 0.01
+let bgSound1 = new sound ("audio/backgroundSound1.m4a")
+bgSound1.volume = 0.1
+let bgSound2 = new sound ("audio/backgroundSound2.m4a")
+bgSound2.volume = 0.1
 let level = 0
 
 
@@ -62,7 +68,7 @@ ctx.drawImage(cushionImg, cushionX, cushionY, cushionWidth, cushionHeight)
 
 function cushionMove() {
     //check for left
-    if (cushionX < 30) {
+    if (cushionX < 50) {
         incrementX += 1
     }
 
@@ -83,17 +89,23 @@ function levelUp() {
         incrementX += 1
     }
     if (score > 30 || score > 150) {
-        jumpJack.play()
-        jumpJack.stop()
+        bgSound1.play()
+        
 
         if (cushionX > 200) {
             cushionX -= 1
         } 
         
     }
-    if (score > 130) {
+
+    if (score > 50) {
+        bgSound1.stop()
+        bgSound2.play()
+    }
+
+    if (score > 100) {
         jumpersDOM.y += 1
-        jumpJack.stop()
+        bgSound2.stop()
         inOmniaSound.play()
         inOmniaSound.stop()
     }
