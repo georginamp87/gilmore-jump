@@ -1,6 +1,7 @@
 //DOM ELEMENTS
 let startBtn = document.querySelector('#btn-start')
 let restartBtn = document.querySelector('#restart')
+let pikaBtn = document.querySelector('#teamvalor')
 let gameoverScreen = document.getElementById('gameover')
 let splash = document.querySelector('#splash')
 let canvas= document.querySelector('#canvas')
@@ -11,23 +12,25 @@ let ctx = canvas.getContext('2d')
 
 //IMAGES
 let bgImg = document.createElement('img')
-bgImg.src = "./images/backgroundCastles.png"
+bgImg.src = "/images/backgroundCastles.png"
 let grassImg = document.createElement('img')
-grassImg.src = "./images/backgroundColorGrass.jpg"
+grassImg.src = "/images/backgroundColorGrass.jpg"
 let towerImg = document.createElement('img')
-towerImg.src = "./images/tower.png"
+towerImg.src = "/images/tower.png"
 let jumpersImg = document.createElement('img')
-jumpersImg.src = "./images/jumpersfalling.png"
+jumpersImg.src = "/images/jumpersfalling.png"
 let treeImg = new Image
-treeImg.src = "./images/treePine.png"
+treeImg.src = "/images/treePine.png"
 let moonImg = new Image
-moonImg.src = "./images/moon.png"
+moonImg.src = "/images/moon.png"
 let pineImg = new Image
-pineImg.src = "./images/treeSmall_green1.png"
+pineImg.src = "/images/treeSmall_green1.png"
 let treesImg = new Image
-treesImg.src = "./images/treeSmall_green2.png"
+treesImg.src = "/images/treeSmall_green2.png"
 let cushionImg = new Image
-cushionImg.src = "./images/fountainRound_N.png"
+cushionImg.src = "/images/fountainRound_N.png"
+let logoImg = new Image
+logoImg.src = "/images/GilmoreGirlsLogo.png"
 
 
 //VARIABLES
@@ -43,7 +46,14 @@ let score = 0
 let jump = false;
 let randomIndex = Math.floor(Math.random() * 10) + 1
 let gameOverSound = new sound ("/audio/gameover.m4a")
+gameOverSound.volume = 0.1
 let jumpJack = new sound('/audio/playingSound.m4a')
+jumpJack.volume = 0.1
+let inOmniaSound = new sound ("/audio/inomniaparatus.m4a")
+inOmniaSound.volume = 0.1
+let pika = new sound ("/audio/pikachu.wav")
+pika.volume = 0.01
+let level = 0
 
 
 function drawRect() {
@@ -68,6 +78,27 @@ function displayScore() {
     ctx.fillText('Score: ' + score, 50, 50)
 }
 
+function levelUp() {
+    if (score > 20 || score > 100) {
+        incrementX += 1
+    }
+    if (score > 30 || score > 150) {
+        jumpJack.play()
+        jumpJack.stop()
+
+        if (cushionX > 200) {
+            cushionX -= 1
+        } 
+        
+    }
+    if (score > 130) {
+        jumpersDOM.y += 1
+        jumpJack.stop()
+        inOmniaSound.play()
+        inOmniaSound.stop()
+    }
+}
+
 function gameOver() {
     canvas.style.display = 'none'
     let gameover = document.querySelector('.gameover')
@@ -90,8 +121,9 @@ function restart() {
 
 
 function jumpersFall () {
-    if (jumpersDOM.y >= canvas.height) {
+    if (jumpersDOM.y + jumpersDOM.height >= canvas.height) {
         clearInterval(intervalID);
+        jumpJack.stop()
         gameOver()
         // location.reload(); 
     }
@@ -101,6 +133,10 @@ function jumpersFall () {
 function draw() {
     ctx.clearRect(0,0, canvas.width, canvas.height)
     ctx.drawImage(bgImg, 0, 0)
+    ctx.drawImage(logoImg, 250, 65)
+    ctx.font = '45px Yusei Magic'
+    ctx.fillStyle = '#FF8066'
+    ctx.fillText('Jump', 450, 180)
     ctx.drawImage(grassImg, 0, canvas.height - grassImg.height)
     ctx.drawImage(towerImg, 80, 600)
     ctx.drawImage(towerImg, 80, 425)
@@ -118,6 +154,7 @@ function draw() {
     displayScore()
     cushionMove()
     jumpersFall()
+    levelUp()
 
 
     if(isRightArrow && jumpersDOM.x + jumpersDOM.width < canvas.width) {
@@ -157,6 +194,7 @@ function start() {
     splash.style.display = 'none'
     canvas.style.display = 'block'
     startBtn.style.display = 'none'
+    jumpJack.play()
     intervalID = setInterval(() => {
         time += 1 
         requestAnimationFrame(draw)
@@ -181,14 +219,19 @@ function sound(src) {
 
 window.addEventListener('load', () => {
     canvas.style.display = 'none'
+
     startBtn.addEventListener('click', () => {
     start()
-    jumpJack.play()
     })
 
     restartBtn.addEventListener('click', () => {
     //call the game restart method
     restart()
     })
+
+    
 })
 
+pikaBtn.addEventListener('click', () => {
+    pika.play()
+    })
