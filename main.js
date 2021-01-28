@@ -42,6 +42,9 @@ let time = 0
 let score = 0
 let jump = false;
 let randomIndex = Math.floor(Math.random() * 10) + 1
+let gameOverSound = new sound ("/audio/gameover.m4a")
+let jumpJack = new sound('/audio/playingSound.m4a')
+
 
 function drawRect() {
 ctx.drawImage(cushionImg, cushionX, cushionY, cushionWidth, cushionHeight)
@@ -59,22 +62,22 @@ function cushionMove() {
         }
 }
 
-function drawScore() {
+function displayScore() {
     ctx.font = '24px Yusei Magic'
     ctx.fillStyle = '#FF8066'
-    ctx.fillText('Score:' + score, 50, 50)
+    ctx.fillText('Score: ' + score, 50, 50)
 }
 
 function gameOver() {
     canvas.style.display = 'none'
     let gameover = document.querySelector('.gameover')
     gameover.style.display = 'block'
-    displayScore()
+    let getScore = document.querySelector('.finalscore')
+    getScore.innerHTML = "Score: " + score 
+    jumpJack.stop()
+    gameOverSound.play()
 }
 
-// function startGame() {
-//     jumpersDOM.x =
-// }
 //Create a method to restart the game
 function restart() {
     canvas.style.display = 'block'
@@ -87,7 +90,7 @@ function restart() {
 
 
 function jumpersFall () {
-    if (jumpersDOM.y > canvas.height) {
+    if (jumpersDOM.y >= canvas.height) {
         clearInterval(intervalID);
         gameOver()
         // location.reload(); 
@@ -97,8 +100,8 @@ function jumpersFall () {
 
 function draw() {
     ctx.clearRect(0,0, canvas.width, canvas.height)
-    ctx.drawImage(bgImg, 10, 20)
-    ctx.drawImage(grassImg, 10, canvas.height - grassImg.height)
+    ctx.drawImage(bgImg, 0, 0)
+    ctx.drawImage(grassImg, 0, canvas.height - grassImg.height)
     ctx.drawImage(towerImg, 80, 600)
     ctx.drawImage(towerImg, 80, 425)
     ctx.drawImage(towerImg, 80, 248)
@@ -112,7 +115,7 @@ function draw() {
     ctx.drawImage(treeImg, 650, 570)
     drawRect()
     ctx.drawImage(jumpersImg, jumpersDOM.x, jumpersDOM.y, jumpersDOM.width, jumpersDOM.height)
-    drawScore()
+    displayScore()
     cushionMove()
     jumpersFall()
 
@@ -135,7 +138,8 @@ function draw() {
     if (jump) {
        let jumpInterval = setInterval(() => {
             jumpersDOM.y -= 1
-            if (jumpersDOM.y < 200) {
+
+            if (jumpersDOM.y < 250) {
                 jump = false;
                 clearInterval(jumpInterval)
             }
@@ -145,7 +149,7 @@ function draw() {
     jumpersDOM.y += incrementY
 
     cushionX += incrementX
-
+    
 }
 
 // TEST THE GAME
@@ -159,17 +163,27 @@ function start() {
     }, 100)
 }
 
-
-
-// bgImg.addEventListener('load', () => {
-//     ctx.drawImage(bgImg, 0, 0, 780, 880)
-// })
+//ADD SOUND
+function sound(src) {
+   this.sound = document.createElement("audio")
+   this.sound.src = src
+   this.sound.setAttribute("preload", "auto")
+   this.sound.setAttribute("controls", "none")
+   this.sound.style.display = "none"
+   document.body.appendChild(this.sound)
+   this.play = function() {
+       this.sound.play()
+   }
+   this.stop = function(){
+       this.sound.pause()
+   }
+}
 
 window.addEventListener('load', () => {
     canvas.style.display = 'none'
-
     startBtn.addEventListener('click', () => {
     start()
+    jumpJack.play()
     })
 
     restartBtn.addEventListener('click', () => {

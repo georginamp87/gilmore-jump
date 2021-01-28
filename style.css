@@ -1,13 +1,17 @@
 body {
     font-family: 'Yusei Magic', sans-serif;
     background-color: #FCF8FF;
-    background-image: url('./images/123-2.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
     margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.splash {
+#splash {
+    background-image: url('./images/123-2.jpg');
+    background-size: auto;
+    background-position: center;
+    background-repeat: no-repeat;
     font-family: Yusei Magic;
     font-size: medium;
     text-align: center;
@@ -65,7 +69,6 @@ p span {
     color: #FF8066;
     font-size: 30px;
     text-transform: uppercase;
-    margin-left: 30%;
 }
 
 #canvas {
@@ -75,15 +78,19 @@ p span {
 
 
 .gameover {
+    width: 700px;
+    height: 800px;
     display: none;
-    font-size: 150px;
+    font-size: 50px;
     text-align: center;
     background-image: url('./images/backgroundCastles.png');
     background-repeat: no-repeat;
-    padding: 280px 0px;
+    background-size: auto;
+    border: 5px solid #4c6a92;
 }
 
 #couple {
+    padding-top: 300px;
     position: relative;
     margin-left: 40%;
     width: 100px;
